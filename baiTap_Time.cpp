@@ -5,12 +5,10 @@ using namespace std;
 class time{
 	private:
 		int second;
-		int Time;
 	public:
 		// khai bao.
 		time(){
 			second = 0;
-			Time = 0;
 		}
 		
 		// nhap time.
@@ -32,11 +30,21 @@ class time{
 			return c;
 		}
 		
-		// tang them giay ( 1s).
-		void operator ++(){
-			second = second + 1;
+		// tang them giay .( 1s).
+		// ++second.
+		time& operator ++(){
+			++second;
+			return *this;
 		}
+		
+		// second++.
+		time operator ++(int){
+           time temp = *this;
+           second++;
+           return temp;
+        }
 };
+
 
 // ham main.
 int main(){
@@ -54,8 +62,8 @@ int main(){
 	
 	// cong them 1s.
 	cout<< endl;
-	++a;
-	cout<<"giay ++a: "<< a << endl;
+	a++;
+	cout<<"giay a++: "<< a << endl;
 	++b;
 	cout<<"giay ++b: "<< b << endl;
 	++tong;
