@@ -256,16 +256,7 @@ class matrix{
                 delete[] data[i];
             }
             delete[] data;
-
-            row = p.row;
-            col = p.col;
-            data = new int*[row];
-            for (int i = 0; i < row; i++) {
-                data[i] = new int[col];
-                for (int j = 0; j < col; j++) {
-                    data[i][j] = p.data[i][j];
-                }
-            }
+			matrix();
             return *this;
 		}
 };
@@ -353,6 +344,6 @@ int main(){
 	// giai phong bo nho.
 	a.deleteMatrix();
 	b.deleteMatrix();
-	
+	c.deleteMatrix();
 	return 0;
 }
