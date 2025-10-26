@@ -51,7 +51,7 @@ class matrix{
 			data = new int* [p.row];
 			// cap phat dong.
 			for(int i = 0; i < row; i++){
-				*(data + i) = new int[col];
+				data[i] = new int[col];
 			}
 			for(int i = 0; i < row; i++){
                 for(int j = 0; j < col; j++){
@@ -139,7 +139,7 @@ class matrix{
 				for(int i = 0; i < size; i++){
 					int** temp = new int*[size - 1];
                     for (int j = 0; j < size - 1; j++) {
-                        *(temp + i) = new int[size - 1];
+                        temp[j] = new int[size - 1];
                     }
                     int sub_i = 0, sub_j = 0;
                     for (int j = 1; j < size; j++) {
@@ -257,7 +257,15 @@ class matrix{
             }
             delete[] data;
 
-            matrix();
+            row = p.row;
+            col = p.col;
+            data = new int*[row];
+            for (int i = 0; i < row; i++) {
+                data[i] = new int[col];
+                for (int j = 0; j < col; j++) {
+                    data[i][j] = p.data[i][j];
+                }
+            }
             return *this;
 		}
 };
@@ -302,7 +310,7 @@ int main(){
 	cout<< b;
 	
 	// phep cong hai ma tran cung cap.
-	if(a.square_matrix() && b.square_matrix()){
+	if(a.getRow() == b.getRow() && a.getCol() == b.getCol()){
 		matrix Tong = a + b;
 		cout<<"\nTong hai ma tran a va b bang: "<< endl;
 		cout<< Tong;
@@ -312,7 +320,7 @@ int main(){
 	}
 	
 	// phep tru hai ma tran cung cap.
-	if(a.square_matrix() && b.square_matrix()){
+	if(a.getRow() == b.getRow() && a.getCol() == b.getCol()){
 		matrix hieu = a - b;
 		cout<<"\nHieu hai ma tran a va b bang: "<< endl;
 		cout<< hieu;
@@ -345,7 +353,6 @@ int main(){
 	// giai phong bo nho.
 	a.deleteMatrix();
 	b.deleteMatrix();
-	c.deleteMatrix();
 	
 	return 0;
 }
